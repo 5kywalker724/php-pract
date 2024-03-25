@@ -1,6 +1,6 @@
 <?php
 return [
-    'root' => 'php-pract',
+    'root' => '',
     'classes' => [
         'app',
         'core'

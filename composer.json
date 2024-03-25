@@ -1,0 +1,13 @@
+{
+    "name": "5kywalker724/php-pract",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PinT271",
+            "email": "olezhka.kuzmin.99@inbox.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
