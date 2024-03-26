@@ -1,6 +1,6 @@
 <?php
 return [
-    'root' => 'test',
+    'root' => '',
     'routes' => 'routes',
     'views' => 'views'
 ];
