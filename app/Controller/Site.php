@@ -3,6 +3,7 @@ namespace Controller;
 
 use Src\Request;
 use Model\Post;
+use Model\User;
 use Src\View;
 
 class Site
@@ -16,5 +17,14 @@ class Site
     public function hello(): string
     {
         return new View('site.hello', ['message' => 'hello working']);
+    }
+
+    public function signup(Request $request): string
+    {
+        if ($request->method==='POST' && User::create($request->all())){
+            return new View('site.signup', ['message'=>'Вы успешно зарегистрированы']);
+        }
+        return new View('site.signup');
+
     }
 }
