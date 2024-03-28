@@ -44,9 +44,26 @@ class Auth
         return false;
     }
 
+    public static function checkAdmin(): bool
+    {
+        if(self::$user->getRole() == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public static function checkEmployee(): bool
+    {
+        if(self::$user->getRole() == 2){
+            return true;
+        }
+        return false;
+    }
+
     public static function logout(): bool
     {
         Session::clear('id');
         return true;
     }
+
 }

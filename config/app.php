@@ -4,6 +4,8 @@ return [
     'identity'=>\Model\User::class,
     'routeMiddleware' => [
         'auth' => \Middlewares\AuthMiddleware::class,
+        'admin' => \Middlewares\AdminMiddleware::class,
+        'employee' => \Middlewares\EmployeeMiddleware::class
     ]
 ];
 
