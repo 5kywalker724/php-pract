@@ -117,19 +117,39 @@ class Site
         return new View('site.get_number_build', ['builds' => $builds]);
     }
 
-    public function getSquare(): string
+    public function getSquare(Request $request): string
     {
-        return new View('site.get_square_build');
+        $builds = Building::all();
+
+        if(!empty($_GET['square']))
+        {
+            $build_id = $_GET['square'];
+            $rooms = Room::where('building_id', $build_id)->get();
+            return new View('site.get_square_build', ['builds' => $builds, 'rooms' => $rooms]);
+        }
+
+        return new View('site.get_square_build', ['builds' => $builds]);
     }
 
-    public function getSeats(): string
+    public function getSeats(Request $request): string
     {
-        return new View('site.get_seats_build');
+        $builds = Building::all();
+
+        if(!empty($_GET['chair']))
+        {
+            $build_id = $_GET['chair'];
+            $rooms = Room::where('building_id', $build_id)->get();
+            return new View('site.get_seats_build', ['builds' => $builds, 'rooms' => $rooms]);
+        }
+
+        return new View('site.get_seats_build', ['builds' => $builds]);
     }
 
     public function getAllSeats(): string
     {
-        return new View('site.get_all_seats');
+        $rooms = Room::all();
+
+        return new View('site.get_all_seats', ['rooms' => $rooms]);
     }
 
     public function errorRole(): string
