@@ -152,6 +152,18 @@ class Site
         return new View('site.get_all_seats', ['rooms' => $rooms]);
     }
 
+    public function searchBuilding(Request $request): string
+    {
+        if(!empty($_GET['search']))
+        {
+            $search_name = $_GET['search'];
+            $builds = Building::where('name', $search_name)->get();
+            return new View('site.search_building', ['builds' => $builds]);
+        }
+
+        return new View('site.search_building');
+    }
+
     public function errorRole(): string
     {
         return new View('site.error_role');

@@ -21,5 +21,6 @@
         <li><a href="<?= app()->route->getUrl('/get_square') ?>">Подсчет общей площади учебных аудиторий по зданию</a></li>
         <li><a href="<?= app()->route->getUrl('/get_seats') ?>">Подсчет общего количества посадочных мест по зданию</a></li>
         <li><a href="<?= app()->route->getUrl('/get_all_seats') ?>">Подсчет общей площади учебных аудиторий по учебному заведению</a></li>
+        <li><a href="<?= app()->route->getUrl('/search_building') ?>">Поиск здания</a></li>
     </ul>
 </div>

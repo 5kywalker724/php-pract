@@ -13,4 +13,5 @@ Route::add('GET', '/get_number', [Controller\Site::class, 'getNumber'])->middlew
 Route::add('GET', '/get_square', [Controller\Site::class, 'getSquare'])->middleware('auth');
 Route::add('GET', '/get_seats', [Controller\Site::class, 'getSeats'])->middleware('auth');
 Route::add('GET', '/get_all_seats', [Controller\Site::class, 'getAllSeats'])->middleware('auth');
+Route::add('GET', '/search_building', [Controller\Site::class, 'searchBuilding'])->middleware('auth');
 Route::add('GET', '/error', [Controller\Site::class, 'errorRole']);

@@ -4,5 +4,6 @@
     <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
     <input type="text" name="name" placeholder="Название">
     <input type="text" name="address" placeholder="Адрес">
+    <label>Добавить схему здания<input type="file" name="image"></label>
     <button>Добавить</button>
 </form>
