@@ -1,6 +1,9 @@
 <?php
 namespace Controller;
 
+use Model\Room;
+use Model\Building;
+use Model\RoomType;
 use Src\Request;
 use Model\Post;
 use Model\User;
@@ -65,24 +68,53 @@ class Site
         app()->route->redirect('/login');
     }
 
-    public function addBuilding(): string
+    public function addBuilding(Request $request): string
     {
+        if ($request->method === 'POST') {
+            if (Building::create($request->all())) {
+                app()->route->redirect('/main');
+            }
+        }
         return new View('site.add_building');
     }
 
-    public function addRoom(): string
+    public function addRoom(Request $request): string
     {
-        return new View('site.add_room');
+        $roomtypes = RoomType::all();
+        if ($request->method === 'POST') {
+            if (Room::create($request->all())) {
+                app()->route->redirect('/main');
+            }
+        }
+        return new View('site.add_room', ['roomtypes' => $roomtypes]);
     }
 
     public function getName(): string
     {
-        return new View('site.get_name_build');
+        $builds = Building::all();
+
+        if(!empty($_GET['name']))
+        {
+            $build_id = $_GET['name'];
+            $rooms = Room::where('building_id', $build_id)->get();
+            return new View('site.get_name_build', ['builds' => $builds, 'rooms' => $rooms]);
+        }
+
+        return new View('site.get_name_build', ['builds' => $builds]);
     }
 
-    public function getNumber(): string
+    public function getNumber(Request $request): string
     {
-        return new View('site.get_number_build');
+        $builds = Building::all();
+
+        if(!empty($_GET['numb']))
+        {
+            $build_id = $_GET['numb'];
+            $rooms = Room::where('building_id', $build_id)->get();
+            return new View('site.get_number_build', ['builds' => $builds, 'rooms' => $rooms]);
+        }
+
+        return new View('site.get_number_build', ['builds' => $builds]);
     }
 
     public function getSquare(): string
