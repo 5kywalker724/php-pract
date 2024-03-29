@@ -223,3 +223,8 @@ footer{
     justify-content: center;
     align-items: center;
 }
+.img{
+    display: block;
+    max-width: 450px;
+    height: 300px;
+}
