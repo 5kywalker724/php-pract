@@ -157,7 +157,7 @@ class Site
         if(!empty($_GET['search']))
         {
             $search_name = $_GET['search'];
-            $builds = Building::where('name', $search_name)->get();
+            $builds = Building::where('name', 'like', "%{$search_name}%")->get();
             return new View('site.search_building', ['builds' => $builds]);
         }
 

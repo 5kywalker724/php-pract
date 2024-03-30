@@ -6,7 +6,7 @@
     </form>
     <div class="build_cont">
         <div>Найденное здание:</div>
-        <ul>
+        <ul class="search_builds">
             <?php
             if(!empty($builds)):
                 foreach ($builds as $build) {
