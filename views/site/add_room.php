@@ -10,6 +10,13 @@
         }
         ?>
     </select>
+    <select name="building_id">
+        <?php
+        foreach ($buildings as $building) {
+            echo '<option value="'.$building->id.'">'.$building->name.'</option>';
+        }
+        ?>
+    </select>
     <input type="number" name="room_square" placeholder="Площадь помещения">
     <input type="number" name="seats" placeholder="Количество посадочных мест">
     <button>Добавить</button>

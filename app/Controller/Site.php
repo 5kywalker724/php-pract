@@ -73,6 +73,19 @@ class Site
     {
         if ($request->method === 'POST') {
 
+            $validator = new Validator($request->all(), [
+                'name' => ['required', 'unique:buildings,name'],
+                'address' => ['required']
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if($validator->fails()){
+                return new View('site.add_building',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+
             if($_FILES['image']){
                 $image = $_FILES['image'];
                 $root = app()->settings->getRootPath();
@@ -99,13 +112,30 @@ class Site
 
     public function addRoom(Request $request): string
     {
+        $buildings = Building::all();
         $roomtypes = RoomType::all();
         if ($request->method === 'POST') {
+
+            $validator = new Validator($request->all(), [
+                'name' => ['required'],
+                'room_type_id' => ['required'],
+                'building_id' => ['required'],
+                'room_square' => ['required'],
+                'seats' => ['required']
+            ], [
+                'required' => 'Поле :field пусто',
+            ]);
+
+            if($validator->fails()){
+                return new View('site.add_room',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+
             if (Room::create($request->all())) {
                 app()->route->redirect('/main');
             }
         }
-        return new View('site.add_room', ['roomtypes' => $roomtypes]);
+        return new View('site.add_room', ['roomtypes' => $roomtypes, 'buildings' => $buildings]);
     }
 
     public function getName(): string

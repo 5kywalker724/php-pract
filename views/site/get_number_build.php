@@ -16,7 +16,7 @@
             <?php
             if(!empty($rooms)):
                 foreach ($rooms as $room) {
-                    echo '<li>Номер помещения: '.$room->id.'</li>';
+                    echo '<li>Номер помещения: '.$room->name.'</li>';
                 }
             endif
             ?>
