@@ -13,6 +13,7 @@ use Src\Validator\Validator;
 
 class Site
 {
+
     public function index(Request $request): string
     {
         $posts = Post::where('id', $request->id)->get();
@@ -71,8 +72,26 @@ class Site
     public function addBuilding(Request $request): string
     {
         if ($request->method === 'POST') {
-            if (Building::create($request->all())) {
-                app()->route->redirect('/main');
+
+            if($_FILES['image']){
+                $image = $_FILES['image'];
+                $root = app()->settings->getRootPath();
+                $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img/';
+                $name = mt_rand(0, 1000).$image['name'];
+
+                move_uploaded_file($image['tmp_name'], $path . $name);
+
+                $building_data = $request->all();
+                $building_data['image'] = $name;
+
+                if(Building::create($building_data)){
+                    app()->route->redirect('/main');
+                }
+            }
+            else{
+                if (Building::create($request->all())) {
+                    app()->route->redirect('/main');
+                }
             }
         }
         return new View('site.add_building');

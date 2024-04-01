@@ -1,4 +1,4 @@
-<form method="post" class="title form_add">
+<form method="post" class="title form_add" enctype="multipart/form-data">
     <h2 class="title_add_room center">Добавление здания</h2>
     <h3 class="center"><?= $message ?? ''; ?></h3>
     <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
