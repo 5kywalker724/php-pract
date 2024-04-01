@@ -8,8 +8,8 @@ return [
         'employee' => \Middlewares\EmployeeMiddleware::class
     ],
     'validators' => [
-        'required' => \Validators\RequireValidator::class,
-        'unique' => \Validators\UniqueValidator::class
+        'required' => Validator\Validators\RequireValidator::class,
+        'unique' => Validator\Validators\UniqueValidator::class
     ],
     'routeAppMiddleware' => [
         'csrf' => \Middlewares\CSRFMiddleware::class,

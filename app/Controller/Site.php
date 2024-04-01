@@ -9,7 +9,7 @@ use Model\Post;
 use Model\User;
 use Src\View;
 use Src\Auth\Auth;
-use Src\Validator\Validator;
+use Validator\Validator;
 
 class Site
 {
